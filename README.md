@@ -32,6 +32,7 @@ The following infrastructure resources defined as Bicep templates in the `infra`
 The template uses the following [event hooks](https://learn.microsoft.com/azure/developer/azure-developer-cli/azd-extensibility) to customize the workflow:
 
 - [preprovision](./infra/azd-hooks/preprovision.sh) to make sure that all the required AKS features are registered.
+- [predeploy](./infra/azd-hooks/predeploy.sh) to install additional cluster components (KEDA and Azure Service Operator).
 
 ## Initializing the template
 
