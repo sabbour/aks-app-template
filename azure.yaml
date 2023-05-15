@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
-name: aks-app-template
+name: aks-app-template # change with your app name
 metadata:
     template: aks-app-template@0.0.1-beta
 hooks:
