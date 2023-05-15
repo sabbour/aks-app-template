@@ -13,9 +13,10 @@ infra:
     module: main
 services:
     app:
-        project: ./src/app/code # path to your app project
+        project: ./src/app/code # path to your "app" project, change to the appropriate path
+        language: js # language of your app, change to the appropriate language
         host: aks # deployment target
         k8s:
-          deploymentPath: ../manifests
+          deploymentPath: ../manifests # relative path to your Kubernetes manifests folder from the project folder
 pipeline:
     provider: github
