@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+name: aks-app-template
+metadata:
+    template: aks-app-template@0.0.1-beta
+hooks:
+    preprovision:
+        interactive: false
+        shell: sh
+        run: chmod +x infra/azd-hooks/preprovision.sh && infra/azd-hooks/preprovision.sh # Registers any required features on the subscription
+infra:
+    provider: bicep
+    path: infra
+    module: main
+services:
+    app:
+        project: ./src/app/code # path to your app project
+        host: aks # deployment target
+        k8s:
+          deploymentPath: ../manifests
+pipeline:
+    provider: github
