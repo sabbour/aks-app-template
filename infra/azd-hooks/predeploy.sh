@@ -6,13 +6,23 @@ az aks get-credentials --resource-group ${AZURE_RESOURCE_GROUP} --name ${AZURE_A
 # Add required Helm repos
 helm repo add aso2 https://raw.githubusercontent.com/Azure/azure-service-operator/main/v2/charts
 helm repo add kedacore https://kedacore.github.io/charts
+helm repo add jetstack https://charts.jetstack.io
 helm repo update
+
+certmanagerStatus=$(helm status cert-manager -n cert-manager 2>&1)
+if [[ $certmanagerStatus == *"Error: release: not found"* ]]; then
+    echo "cert-manager not installed, installing"
+    helm upgrade --install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.11.0 --set installCRDs=true
+else
+  echo "cert-manager installed, skipping"
+fi
 
 echo "Checking if Azure Service Operator is installed"
 aso2Status=$(helm status aso2 -n azureserviceoperator-system 2>&1)
 if [[ $aso2Status == *"Error: release: not found"* ]]; then
      echo "Azure Service Operator not installed, installing"
-     kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.8.2/cert-manager.yaml
+     #kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.8.2/cert-manager.yaml
+
      helm upgrade --install --devel aso2 aso2/azure-service-operator \
           --create-namespace \
           --namespace=azureserviceoperator-system \
