@@ -5,19 +5,18 @@
 ## Prerequisites
 
 - [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli)
-- [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd). Use the [latest daily build](https://github.com/Azure/azure-dev).
+- [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd)
 - [Visual Studio Code](https://code.visualstudio.com/download)
-- [AKS Developer Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.aks-devx-tools).
+- [AKS Developer Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.aks-devx-tools)
 
 ## What is included in this repository
-
-This is the end state repository that was created from the [Azure Kubernetes Service (AKS) app base template](https://github.com/sabbour/aks-app-base-template). To understand more about the Azure Developer CLI architecture and to create a similar template, you can refer to [Make your project compatible with Azure Developer CLI](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/make-azd-compatible?pivots=azd-create).
 
 The repository hosts of the following components:
 
 - Azure Developer CLI configuration
 - Placeholder for an application `src\app\`
 
+To understand more about the Azure Developer CLI architecture and to create a similar template, you can refer to [Make your project compatible with Azure Developer CLI](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/make-azd-compatible?pivots=azd-create).
 
 ### Azure Developer CLI configuration
 
@@ -41,7 +40,7 @@ If you are starting from this end state repo, use `azd init` to clone this templ
 ```sh
 mkdir my-app
 cd my-app
-azd init -t <this repo's url>
+azd init -t https://github.com/sabbour/aks-app-template
 ```
 
 ## Deploying infrastructure

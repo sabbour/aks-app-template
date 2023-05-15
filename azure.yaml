@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+name: aks-app-template # change with your app name
+metadata:
+    template: aks-app-template@0.0.1-beta
+hooks:
+    preprovision:
+        interactive: false
+        shell: sh
+        run: chmod +x infra/azd-hooks/preprovision.sh && infra/azd-hooks/preprovision.sh # Registers any required features on the subscription
+    predeploy:
+        interactive: true
+        shell: sh
+        run: chmod +x infra/azd-hooks/predeploy.sh && infra/azd-hooks/predeploy.sh # installs additional components on the cluster
+infra:
+    provider: bicep
+    path: infra
+    module: main
+services:
+    app:
+        project: ./src/app/code # path to your "app" project, change to the appropriate path
+        language: js # language of your app, change to the appropriate language
+        host: aks # deployment target
+        k8s:
+          deploymentPath: ../manifests # relative path to your Kubernetes manifests folder from the project folder
+pipeline:
+    provider: github
