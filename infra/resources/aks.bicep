@@ -45,7 +45,7 @@ resource aks 'Microsoft.ContainerService/managedClusters@2023-02-02-preview' = {
 
     workloadAutoScalerProfile: {
       keda: {
-        enabled: true
+        enabled: false // Installed via Helm as a workaround as we need KEDA 2.10 for Prometheus workload identity authentication
       }
       verticalPodAutoscaler: {
         enabled: true
