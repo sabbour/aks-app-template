@@ -51,9 +51,9 @@ jobs:
       - name: Azure Dev Provision
         run: azd provision --no-prompt
         env:
-          AZURE_ENV_NAME: ${{ env.AZURE_ENV_NAME }}
-          AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
-          AZURE_SUBSCRIPTION_ID: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
+          AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
+          AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
           
       - name: Azure login (to refresh the token for the predeploy script)
         uses: azure/login@v1
@@ -65,6 +65,6 @@ jobs:
       - name: Azure Dev Deploy
         run: azd deploy --no-prompt
         env:
-          AZURE_ENV_NAME: ${{ env.AZURE_ENV_NAME }}
-          AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
-          AZURE_SUBSCRIPTION_ID: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
+          AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
+          AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
